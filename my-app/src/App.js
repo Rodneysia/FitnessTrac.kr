@@ -1,4 +1,4 @@
-import { Activities } from './components';
+import { Activities } from './components/Activities';
 import './App.css';
 
 export function App() {
