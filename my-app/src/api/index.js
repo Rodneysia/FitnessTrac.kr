@@ -9,7 +9,7 @@ export async function getActivities(){
               'Authorization': 'Bearer TOKEN_STRING_HERE'
             },
             body: JSON.stringify({ /* whatever things you need to send to the API */ })
-            return response;
+            return reponse;
           })
     }
     catch(err){
