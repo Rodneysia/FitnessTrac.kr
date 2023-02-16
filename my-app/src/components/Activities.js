@@ -1,4 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getActivities } from "../api";
 
-const 
+
+export const Activities = () => {
+  return (
+    <div>
+      <getActivities />
+    </div>
+  )
+}
+

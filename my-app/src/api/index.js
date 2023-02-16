@@ -9,7 +9,7 @@ export async function getActivities(){
             },
             body: JSON.stringify({ /* whatever things you need to send to the API */ })
           })
-          return reponse;
+          return response;
     }
     catch(err){
         console.error('error', err);
@@ -25,8 +25,11 @@ export async function getRoutines(){
                 'Authorization': 'Bearer TOKEN_STRING_HERE'
   },
   body: JSON.stringify({ /* whatever things you need to send to the API */ })
-  return response;
-    })}
+  
+    })
+    return response;
+}
+
     catch(err){
         console.error('error', err);
     }

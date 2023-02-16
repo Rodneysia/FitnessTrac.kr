@@ -1,18 +1,16 @@
-
+import { Activities } from './components';
 import './App.css';
 
-function App() {
+export function App() {
   return (
     <div className="App">
       <header className="App-header">
        
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+      <Activities/>
        
       </header>
     </div>
   );
 }
 
-export default App;
+
