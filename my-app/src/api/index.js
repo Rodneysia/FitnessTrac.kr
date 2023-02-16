@@ -3,14 +3,13 @@ const URL = `https://fitnesstrac-kr.herokuapp.com/api/`
 export async function getActivities(){
     try{
         const response = await fetch(`${URL}activities`, {
-            method: 'POST',
+            method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer TOKEN_STRING_HERE'
             },
             body: JSON.stringify({ /* whatever things you need to send to the API */ })
-            return reponse;
           })
+          return reponse;
     }
     catch(err){
         console.error('error', err);
