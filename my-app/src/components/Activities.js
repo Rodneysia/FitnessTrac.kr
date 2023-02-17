@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { getActivities } from "../api/index.js";
 
 
-export const Activities = () => {
+
+
+export const Activities = ({allActivities, error, setError, setAllActivities}) => {
   return (
     <div>
-      <getActivities />
+      {allActivities.map(elem =>{
+        console.log(elem)
+        return <div>
+          <h2>{elem.name}</h2>
+          <p>{elem.description}</p>
+        </div>
+      }) }
+      
     </div>
   )
 }
