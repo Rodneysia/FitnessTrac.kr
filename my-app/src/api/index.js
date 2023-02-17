@@ -13,22 +13,16 @@ export async function GetActivities() {
     }
   }
 
-// export async function getRoutines(){
-//     try{
-//         const response = await fetch(`${URL}/api/routines`, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'Authorization': 'Bearer TOKEN_STRING_HERE'
-//   },
-//   body: JSON.stringify({ /* whatever things you need to send to the API */ })
-  
-//     })
-//     return response;
-// }
+export async function GetRoutines(){
+  try {
+    const response = await fetch(`${URL}/api/routines`);
+    const result = await response.json();
+    //console.log(result);
+    return result;
+    
+  } catch (error) {
+    console.error(error);
 
-//     catch(err){
-//         console.error('error', err);
-//     }
-// }
+  }
+}
 

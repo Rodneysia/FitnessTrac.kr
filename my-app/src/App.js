@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from './components/Navbar';
 import { Activities } from './components/Activities';
-import { GetActivities } from "../src/api/index";
+import { Routines } from './components/Routines'
+import { GetActivities, GetRoutines } from "../src/api/index";
 import './App.css';
 
 export function App() {
   const [allActivities, setAllActivities] = useState([]);
   const [error, setError] = useState(null);
+  const [allRoutines, setAllRoutines] = useState([]);
 
 
   useEffect(() => {
@@ -18,6 +20,16 @@ export function App() {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await GetRoutines();
+
+      setAllRoutines(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <Router>
     <div className="App">
@@ -29,8 +41,15 @@ export function App() {
             error={error}
             setError={setError}
             setAllActivities={setAllActivities}
-          />
-        }/>
+            />
+          }/>
+        <Route
+            path="/routines"
+            element={
+              <Routines
+                allRoutines={allRoutines}
+              />
+            }/>
         
       </Routes>
     </div>
