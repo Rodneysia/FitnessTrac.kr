@@ -7,9 +7,11 @@ export async function getActivities(){
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ /* whatever things you need to send to the API */ })
-          })
-          return response;
+            }).then(response => response.json())
+            .then (result => {
+                console.log(result);
+            })
+          return response();
     }
     catch(err){
         console.error('error', err);

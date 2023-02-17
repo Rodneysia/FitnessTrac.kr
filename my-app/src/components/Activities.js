@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getActivities } from "../api";
+import { getActivities } from "../api/index.js";
 
 
 export const Activities = () => {
