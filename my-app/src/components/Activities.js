@@ -1,7 +1,3 @@
-import React, { useEffect, useState } from "react";
-
-
-
 
 export const Activities = ({allActivities, error, setError, setAllActivities}) => {
   return (
