@@ -4,7 +4,7 @@ export async function GetActivities() {
     try {
       const response = await fetch(`${URL}/api/activities`);
       const result = await response.json();
-      console.log(result);
+      //console.log(result);
       return result;
       
     } catch (error) {

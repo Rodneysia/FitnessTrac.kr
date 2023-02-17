@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -23,4 +23,12 @@
   color: #61dafb;
 }
 
+.nav-container {
+  background-color: rgb(63, 148, 228);
+}
 
+.nav-list {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+}
