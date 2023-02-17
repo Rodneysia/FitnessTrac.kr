@@ -1,37 +1,33 @@
-const URL = `https://fitnesstrac-kr.herokuapp.com/api/`
+const URL = `https://fitnesstrac-kr.herokuapp.com`;
 
-export async function getActivities(){
-    try{
-        const response = await fetch(`${URL}activities`, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ /* whatever things you need to send to the API */ })
-          })
-          return response;
+export async function GetActivities() {
+    try {
+      const response = await fetch(`${URL}/api/activities`);
+      const result = await response.json();
+      console.log(result);
+      return result;
+      
+    } catch (error) {
+      console.error(error);
     }
-    catch(err){
-        console.error('error', err);
-    }
-}
+  }
 
-export async function getRoutines(){
-    try{
-        const response = await fetch(`${URL}routines`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer TOKEN_STRING_HERE'
-  },
-  body: JSON.stringify({ /* whatever things you need to send to the API */ })
+// export async function getRoutines(){
+//     try{
+//         const response = await fetch(`${URL}/api/routines`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Authorization': 'Bearer TOKEN_STRING_HERE'
+//   },
+//   body: JSON.stringify({ /* whatever things you need to send to the API */ })
   
-    })
-    return response;
-}
+//     })
+//     return response;
+// }
 
-    catch(err){
-        console.error('error', err);
-    }
-}
+//     catch(err){
+//         console.error('error', err);
+//     }
+// }
 
