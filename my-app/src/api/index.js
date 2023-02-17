@@ -9,6 +9,7 @@ export async function GetActivities() {
       
     } catch (error) {
       console.error(error);
+
     }
   }
 
