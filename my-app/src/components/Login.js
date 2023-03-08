@@ -17,11 +17,14 @@ export const Login = () => {
     const response = await fetch('https://fitnesstrac-kr.herokuapp.com/api/users/login', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
       body: JSON.stringify({
-        email,
-        password
+        user : {
+          email: email,
+          password: password,
+        }
       })
     });
 

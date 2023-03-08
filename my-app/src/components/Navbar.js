@@ -3,13 +3,12 @@ import { NavLink } from "react-router-dom";
 
 
 export const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('token') !== null);
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('token');
     setIsLoggedIn(false);
   };
-
   return (
     <>
       <div className="nav-container">

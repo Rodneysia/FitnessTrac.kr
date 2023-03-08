@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home } from './components/Home'
 import { Navbar } from './components/Navbar';
 import { Signup } from "./components/Signup";
 import { Login } from './components/Login';
@@ -37,6 +38,7 @@ export function App() {
     <div className="App">
       <Navbar />
       <Routes>
+      <Route path='/' element={<Home/>} />
         <Route path='activities' element={
           <Activities
             allActivities={allActivities}

@@ -6,9 +6,10 @@ export const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userIsRegistered, setUserIsRegistered] = useState(false);
+    const [error, setError] = useState(null);
   
     if (userIsRegistered) {
-      return <Navigate to="/login"/>
+      return <Navigate to="/activities"/>
     }
   
     const handleSubmit = async (event) => {
@@ -17,12 +18,15 @@ export const Signup = () => {
       const response = await fetch('https://fitnesstrac-kr.herokuapp.com/api/users/register', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
-          username,
-          email,
-          password
+          user : {
+            username: username,
+            email: email,
+            password: password,
+          }
         })
       });
   
@@ -30,12 +34,16 @@ export const Signup = () => {
         const { token } = await response.json();
         localStorage.setItem('authToken', token);
         setUserIsRegistered(true);
+      } else {
+        const error = await response.json();
+        setError(error.message);
       }
     };
   
     return (
       <>
         <h2>Signup</h2>
+        {error && <div>{error}</div>}
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username">Username:</label>
@@ -49,7 +57,7 @@ export const Signup = () => {
           </div>
           <div>
             <label htmlFor="password">Password:</label>
-            <input type="password"  id="password" value={password} minLength={8} placeholder="password"
+            <input type="password"  id="password" value={password} placeholder="password"
               onChange={(event) => setPassword(event.target.value)} required />
           </div>
           <button type="submit">Signup</button>
