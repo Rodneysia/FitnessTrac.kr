@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from './components/Navbar';
+import { Signup } from "./components/Signup";
+import { Login } from './components/Login';
 import { Activities } from './components/Activities';
 import { Routines } from './components/Routines'
 import { GetActivities, GetRoutines } from "../src/api/index";
@@ -50,7 +52,10 @@ export function App() {
                 allRoutines={allRoutines}
               />
             }/>
-        
+        <Route path='/signup' 
+            element={<Signup />} />
+        <Route path='/login' 
+            element={<Login />} />
       </Routes>
     </div>
   </Router>
