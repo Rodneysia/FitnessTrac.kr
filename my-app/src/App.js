@@ -4,6 +4,9 @@ import { Navbar } from './components/Navbar';
 import { Activities } from './components/Activities';
 import { Routines } from './components/Routines'
 import { GetActivities, GetRoutines } from "../src/api/index";
+import { Register } from "./components/Register";
+import { UserRegister } from '../api/index';
+
 import './App.css';
 
 export function App() {
@@ -48,6 +51,15 @@ export function App() {
             element={
               <Routines
                 allRoutines={allRoutines}
+              />
+            }/>
+        <Route 
+            path="/register" element={
+              <Register 
+              Register={Register}
+              error={error}
+              setError={setError}
+              UserRegister={UserRegister}
               />
             }/>
         

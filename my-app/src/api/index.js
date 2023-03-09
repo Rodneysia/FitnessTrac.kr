@@ -26,3 +26,29 @@ export async function GetRoutines(){
   }
 }
 
+export async function GetMyRoutines(`${URL}/api/routines`){
+  try {
+    const reponse = await fetch(``)
+  }
+}
+
+export async function UserRegister(){
+  try {
+    const response = await fetch('http://fitnesstrac-kr.herokuapp.com/api/users/register', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: 'superman27',
+        password: 'krypt0n0rbust'
+      })
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+      })
+    } catch (error) {
+      console.error(error);
+  }
+}
+
