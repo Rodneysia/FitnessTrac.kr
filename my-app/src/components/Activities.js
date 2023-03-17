@@ -19,6 +19,7 @@ export const Activities = ({ allActivities, error, setError, setAllActivities })
       {allActivities.map((activity) => {
         return (
           <div key={activity.id}>
+          
             <h2>
               <Link to={`/activities/${activity.id}`} onClick={() => handleActivityClick(activity.id)}>
                 {activity.name}
