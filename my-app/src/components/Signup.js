@@ -6,59 +6,65 @@ export const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [userIsRegistered, setUserIsRegistered] = useState(false);
-    const [error, setError] = useState(null);
+    const [errors, setErrors] = useState(null);
   
     if (userIsRegistered) {
-      return <Navigate to="/activities"/>
+      return <Navigate to="/routines"/>
     }
   
     const handleSubmit = async (event) => {
       event.preventDefault();
-  
+
+      const token = localStorage.getItem('authToken');
+
       const response = await fetch('https://fitnesstrac-kr.herokuapp.com/api/users/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          user : {
-            username: username,
-            email: email,
-            password: password,
-          }
-        })
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+              user : {
+                  username: username,
+                  email: email,
+                  password: password,
+              }
+          })
       });
-  
+
       if (response.ok) {
-        const { token } = await response.json();
-        localStorage.setItem('authToken', token);
-        setUserIsRegistered(true);
+          const { token } = await response.json();
+          localStorage.setItem('authToken', token);
+          setUserIsRegistered(true);
       } else {
-        const error = await response.json();
-        setError(error.message);
+          const { errors } = await response.json();
+          const errorMessage = Object.values(errors)[0];
+          setErrors(errorMessage);
       }
-    };
+  };
   
     return (
       <>
         <h2>Signup</h2>
-        {error && <div>{error}</div>}
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username">Username:</label>
             <input type="text" id="username" value={username} 
               onChange={(event) => setUsername(event.target.value)} required />
+            {errors && errors.username && <p>{errors.username}</p>}
           </div>
           <div>
             <label htmlFor="email">Email:</label>
             <input type="email" id="email" value={email} placeholder="youremail@email.com" 
               onChange={(event) => setEmail(event.target.value)} required />
+            {errors && errors.email && <p>{errors.email}</p>}
           </div>
           <div>
             <label htmlFor="password">Password:</label>
-            <input type="password"  id="password" value={password} placeholder="password"
+            <input type="password"  id="password" value={password} minLength={8} placeholder="password"
               onChange={(event) => setPassword(event.target.value)} required />
+            {errors && errors.password && <p>{errors.password}</p>}
           </div>
           <button type="submit">Signup</button>
         </form>

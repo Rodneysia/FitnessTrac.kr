@@ -8,34 +8,44 @@ export const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   if (userIsActive) {
-    return <Navigate to="/activities"/>
+    return <Navigate to="/routines"/>
   } 
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await fetch('https://fitnesstrac-kr.herokuapp.com/api/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        user : {
-          email: email,
-          password: password,
-        }
-      })
-    });
+    try {
+    const response = await fetch(
+      "https://fitnesstrac-kr.herokuapp.com/api/users/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+        body: JSON.stringify({
+        
+            username: email,
+            password: password
+          
+        }),
+      }
+    );
 
     if (response.ok) {
       const { token } = await response.json();
-      localStorage.setItem('authToken', token);
+      localStorage.setItem("authToken", token);
       setUserIsActive(true);
     } else {
-        setErrorMessage('Invalid email or password. Please try again');
-        throw response.error;
+      setErrorMessage("Invalid email or password. Please try again");
+      throw response.error;
     }
+  } catch (error) {
+    console.error(error);
+    setErrorMessage('An error occurred. Please try again later.');
+  }
   };
 
   return (

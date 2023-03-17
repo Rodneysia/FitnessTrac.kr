@@ -5,7 +5,9 @@ import { Navbar } from './components/Navbar';
 import { Signup } from "./components/Signup";
 import { Login } from './components/Login';
 import { Activities } from './components/Activities';
-import { Routines } from './components/Routines'
+import { Routines } from './components/Routines';
+import { MyRoutines } from "./components/MyRoutines";
+import { CreateActivity } from "./components/CreateActivity";
 import { GetActivities, GetRoutines } from "../src/api/index";
 import './App.css';
 
@@ -47,6 +49,13 @@ export function App() {
             setAllActivities={setAllActivities}
             />
           }/>
+         <Route
+            path="/create-activity"
+            element={
+              <CreateActivity
+                setError={setError}
+              />
+            }/>
         <Route
             path="/routines"
             element={
@@ -54,6 +63,10 @@ export function App() {
                 allRoutines={allRoutines}
               />
             }/>
+           <Route path='/:username/routines' element={
+            <MyRoutines />
+          }/>
+
         <Route path='/signup' 
             element={<Signup />} />
         <Route path='/login' 
