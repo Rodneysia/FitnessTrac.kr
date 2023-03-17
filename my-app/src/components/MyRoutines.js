@@ -25,7 +25,7 @@ export const MyRoutines = ({ username }) => {
 
   return (
     <div>
-      <h1>My Routines</h1>
+       <h1>Routines for {username}</h1>
       {routines.map(routine => (
         <div key={routine.id}>
           <h3>{routine.name}</h3>
