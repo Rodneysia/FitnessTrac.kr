@@ -5,7 +5,8 @@ import { Navbar } from './components/Navbar';
 import { Signup } from "./components/Signup";
 import { Login } from './components/Login';
 import { Activities } from './components/Activities';
-import { Routines } from './components/Routines'
+import { Routines } from './components/Routines';
+import { MyRoutines } from "./components/MyRoutines";
 import { GetActivities, GetRoutines } from "../src/api/index";
 import './App.css';
 
@@ -54,6 +55,10 @@ export function App() {
                 allRoutines={allRoutines}
               />
             }/>
+           <Route path='/:username/routines' element={
+            <MyRoutines />
+          }/>
+
         <Route path='/signup' 
             element={<Signup />} />
         <Route path='/login' 

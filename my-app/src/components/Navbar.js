@@ -26,6 +26,10 @@ export const Navbar = () => {
          <li><NavLink to="/routines">
            <button>Routines</button>
          </NavLink></li>
+         
+         <li><NavLink to="/myroutines">
+            <button>My Routines</button>
+          </NavLink></li>
 
          {isLoggedIn ? (
             <li>
